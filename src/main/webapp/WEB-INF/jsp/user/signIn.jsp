@@ -18,12 +18,12 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		
 		<section class="signin-content d-flex justify-content-center">
-			<div class="login-box bg-warning h-100 d-flex justify-content-center align-items-center">
+			<div class="login-box h-100 d-flex justify-content-center align-items-center">
 			 <div class="w-100">
 				<h1 class="text-center">로그인</h1>
-				<input type="text" class="form-control mt-3" placeholder="아이디">
-				<input type="text" class="form-control mt-3" placeholder="패스워드">
-				<button type="submit" class="btn btn-info btn-block mt-3">로그인</button>
+				<input type="text" class="form-control mt-3" placeholder="아이디" id="loginIdInput">
+				<input type="text" class="form-control mt-3" placeholder="패스워드" id="passwordInput">
+				<button type="submit" class="btn btn-info btn-block mt-3" id="loginBtn">로그인</button>
 				<div class="mt-3 text-right"><a href="/user/signup_view">회원가입</a></div>
 			 </div>
 			</div>
@@ -32,6 +32,23 @@
 		
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
+	
+	<script>
+	$(document).ready(function(){
+		$("#loginBtn").on("click",function(){
+			var loginId = $("#loginIdInput").val();
+			var password = $("#passwordInput").val();
+			
+			if(loginId == null || loginId ==""){
+				alert("id를 입력해주세요");
+				return;
+			}
+			if(password == null || password ==""){
+				alert("비밀번호를 입력해주세요");
+			}
+		});
+	});
+	</script>
 
 </body>
 </html>

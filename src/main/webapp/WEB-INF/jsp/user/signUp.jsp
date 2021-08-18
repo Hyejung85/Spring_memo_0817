@@ -22,14 +22,14 @@
 			 <div class="w-100">
 				<h1 class="text-center">회원가입</h1>
 				<input type="text" class="form-control mt-3" placeholder="아이디" id="idInput">
-				<input type="text" class="form-control mt-3" placeholder="패스워드" id="passwordInput">
-				<input type="text" class="form-control mt-3" placeholder="패스워드 확인" id="passwordCheckInput">
+				<input type="password" class="form-control mt-3" placeholder="패스워드" id="passwordInput">
+				<input type="password" class="form-control mt-3" placeholder="패스워드 확인" id="passwordCheckInput">
 				<div class="text-danger d-none" id="passwordBox">
 				<small>패스워드가 일치하지 않습니다.</small>
 				</div>
 				<input type="text" class="form-control mt-3" placeholder="이름" id="nameInput">
 				<input type="text" class="form-control mt-3" placeholder="이메일 주소" id="emailInput">
-				<button type="submit" class="btn btn-info btn-block mt-3" id="checkBtn">회원가입</button>
+				<button type="submit" class="btn btn-info btn-block mt-3" id="signupBtn">회원가입</button>
 			 </div>
 			</div>
 		
@@ -40,19 +40,19 @@
 	
 	<script>
 	$(document).ready(function(){
-		$("#checkBtn").on("click",function(){
+		$("#signupBtn").on("click",function(){
 			var id = $("#idInput").val();
 			var password = $("#passwordInput").val();
 			var passwordCheck = $("#passwordCheckInput").val();
-			var name = $("#nameInput").val();
-			var email = $("#emailInput").val();
+			var name = $("#nameInput").val().trim();
+			var email = $("#emailInput").val().trim();
 			
 			if(id == null || id ==""){
-				alert("id를 입력하세요");
+				alert("아이디를 입력하세요");
 				return;
 			}
 			if(password == null || password ==""){
-				alert("password를 입력하세요");
+				alert("비밀번호를 입력하세요");
 				return;
 			}
 			if(name == null || name ==""){
