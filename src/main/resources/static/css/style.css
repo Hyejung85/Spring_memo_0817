@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+#wrap {
+	width:1200px;
+	height:800px;
+	margin:auto;
+}
+
+header {
+	height:70px;
+	background-color:#bbbbbb;
+}
+
+.signin-content {
+	height:500px;
+}
+
+.signup-content {
+	height:500px;
+}
+
+.login-box {
+	width:400px;
+	
+}
+
+footer {
+	height:50px;
+	background-color:#bbbbbb;
+}
