@@ -25,6 +25,6 @@ public class UserBO {
 			return 0;
 		}
 		
-		return userDAO.insertUser(loginId, password, name, email);
+		return userDAO.insertUser(loginId, encryptPassword, name, email);
 	}
 }
