@@ -21,15 +21,18 @@
 			<div class="login-box h-100 d-flex justify-content-center align-items-center">
 			 <div class="w-100">
 				<h1 class="text-center">회원가입</h1>
-				<input type="text" class="form-control mt-3" placeholder="아이디" id="idInput">
-				<input type="password" class="form-control mt-3" placeholder="패스워드" id="passwordInput">
-				<input type="password" class="form-control mt-3" placeholder="패스워드 확인" id="passwordCheckInput">
-				<div class="text-danger d-none" id="passwordBox">
-				<small>패스워드가 일치하지 않습니다.</small>
-				</div>
-				<input type="text" class="form-control mt-3" placeholder="이름" id="nameInput">
-				<input type="text" class="form-control mt-3" placeholder="이메일 주소" id="emailInput">
-				<button type="submit" class="btn btn-info btn-block mt-3" id="signupBtn">회원가입</button>
+				<form method="post" action="/user/sign_up" id="signupForm">
+					<input type="text" class="form-control mt-3" placeholder="아이디" id="loginIdInput" name="loginId">
+					<input type="password" class="form-control mt-3" placeholder="패스워드" id="passwordInput" name="password">
+					<input type="password" class="form-control mt-3" placeholder="패스워드 확인" id="passwordCheckInput">
+					<div class="text-danger d-none" id="passwordBox">
+					<small>패스워드가 일치하지 않습니다.</small>
+					</div>
+					<input type="text" class="form-control mt-3" placeholder="이름" id="nameInput" name="name">
+					<input type="text" class="form-control mt-3" placeholder="이메일 주소" id="emailInput" name="email">
+					
+					<button type="submit" class="btn btn-info btn-block mt-3" id="signupBtn">회원가입</button>
+				</form>
 			 </div>
 			</div>
 		
@@ -40,32 +43,53 @@
 	
 	<script>
 	$(document).ready(function(){
-		$("#signupBtn").on("click",function(){
-			var id = $("#idInput").val();
+		$("#signupForm").on("submit",function(e){
+			
+			e.preventDefault();
+			
+			var loginId = $("#loginIdInput").val();
 			var password = $("#passwordInput").val();
 			var passwordCheck = $("#passwordCheckInput").val();
 			var name = $("#nameInput").val().trim();
 			var email = $("#emailInput").val().trim();
 			
-			if(id == null || id ==""){
+			if(loginId == null || loginId ==""){
 				alert("아이디를 입력하세요");
-				return;
+				return false;
 			}
 			if(password == null || password ==""){
 				alert("비밀번호를 입력하세요");
-				return;
+				return false;
 			}
 			if(name == null || name ==""){
 				alert("이름를 입력하세요");
-				return;
+				return false;
 			}
 			if(email == null || email ==""){
 				alert("email를 입력하세요");
-				return;
+				return false;
 			}
 			if(password != passwordCheck){
 				$("#passwordBox").removeClass("d-none");
 			}
+			
+			$.ajax({
+				type:"post",
+				url:"/user/sign_up",
+				data:{"loginId":loginId, "password":password, "name":name, "email":email},
+				success:function(data){
+					if(data.result == "success"){
+						location.href ="/user/signin_view";
+					}else{
+						alert("회원 가입 실패");
+					}
+				},
+				error:function(e){
+					alert("회원 가입 실패");
+				}
+			});
+			return false;
+			
 		
 		});
 	});
