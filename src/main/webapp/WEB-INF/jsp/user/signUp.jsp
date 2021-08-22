@@ -86,7 +86,7 @@
 				$("#passwordBox").removeClass("d-none");
 			}
 			
-			// 중복체크했는?
+			// 중복체크했는지?
 			if(isIdCheck == false){
 				alert("아이디 중복체크를 진행하세요");
 				return;

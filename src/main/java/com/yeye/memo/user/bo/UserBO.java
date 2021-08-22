@@ -1,4 +1,4 @@
-package com.yeye.memo.user;
+package com.yeye.memo.user.bo;
 
 
 import org.slf4j.Logger;
