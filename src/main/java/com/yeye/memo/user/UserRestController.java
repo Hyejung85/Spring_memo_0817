@@ -70,6 +70,7 @@ public class UserRestController {
 			
 			// 로그인 상태 세션가져오기
 			HttpSession session = request.getSession();
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("userLoginId", user.getLoginId());
 			session.setAttribute("userName", user.getName());
 			
