@@ -22,9 +22,9 @@ public class PostRestController {
 	@Autowired
 	private PostBO postBO;
 	
-	@PostMapping("/create")
+	@RequestMapping("/create")
 	public Map<String, String> create(
-			@RequestParam("title") String title
+			@RequestParam("subject") String subject
 			, @RequestParam("content") String content
 			, @RequestParam(value = "file", required = false) MultipartFile file 
 			, HttpServletRequest request){
@@ -36,7 +36,7 @@ public class PostRestController {
 		
 		
 		// userId, title, content, file
-		int count = postBO.addPost(userId, title, content, file);
+		int count = postBO.addPost(userId, subject, content, file);
 		
 		Map<String, String> result = new HashMap<>();
 		if(count == 1) {

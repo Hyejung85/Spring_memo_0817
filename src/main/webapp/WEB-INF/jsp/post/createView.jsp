@@ -22,7 +22,7 @@
 				<!-- 제목, 내용, 파일 업로드  -->
 				<div class="d-flex aling-item-center ml-3">
 					<label>제목 : </label>
-					<input type="text" class="form-control col-11 ml-3" id="titleInput">
+					<input type="text" class="form-control col-11 ml-3" id="subjectInput">
 				</div>
 				<textarea class="form-control mt-3" rows="5" id="contentInput"></textarea>
 				<!-- MIME -->
@@ -39,10 +39,10 @@
 	<script>
 		$(document).ready(function(){
 			$("#saveBtn").on("click",function(){
-				var title = $("#titleInput").val().trim();
+				var subject = $("#subjectInput").val().trim();
 				var content = $("#contentInput").val().trim();
 				
-				if(title == null || title ==""){
+				if(subject == null || subject ==""){
 					alert("제목을 입력하세요");
 					return;
 				}
@@ -52,7 +52,7 @@
 				}
 				
 				var formData = new FormData();
-				formData.append("title", title);
+				formData.append("subject", subject);
 				formData.append("content", content);
 				formData.append("file", $("#fileInput")[0].files[0]);
 				

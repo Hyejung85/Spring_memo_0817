@@ -15,9 +15,7 @@
  			, `imagePath`
  			, `createdAt`
  			, `updatedAt`
- 		)
- 		VALUES
- 		(
+ 		) VALUES ( 
  			#{userId}
  			, #{subject}
  			, #{content}
@@ -26,9 +24,6 @@
  			, now()
  		
  		)
- 		
- 		
- 	
  	</insert>
  
  </mapper>
