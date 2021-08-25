@@ -1,7 +1,11 @@
 package com.yeye.memo.post.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
+
+import com.yeye.memo.post.model.Post;
 
 @Repository
 public interface PostDAO {
@@ -12,4 +16,8 @@ public interface PostDAO {
 			, @Param("content") String content
 			, @Param("imagePath") String imagePath);
 	
+	public List<Post> selectMemoList(@Param("userId") int userId);
+	
+	public Post selectMemo(@Param("id") int id
+			, @Param("userId") int userId);
 }

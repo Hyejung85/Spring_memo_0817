@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>memo - 글쓰기</title>
+<title>memo - 상세</title>
 <!-- bootstrap CDN link -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -18,67 +18,27 @@
 		<c:import url="/WEB-INF/jsp/include/header.jsp" />
 		<section class="d-flex justify-content-center">
 			<div class="m-5 w-75">
-				<h1 class="text-center">메모 입력</h1>
+				<h1 class="text-center">메모 상세</h1>
 				<!-- 제목, 내용, 파일 업로드  -->
 				<div class="d-flex aling-item-center ml-3">
 					<label>제목 : </label>
-					<input type="text" class="form-control col-11 ml-3" id="subjectInput">
+					<input type="text" class="form-control col-11 ml-3" id="subjectInput" value="${post.subject }">
 				</div>
-				<textarea class="form-control mt-3" rows="5" id="contentInput"></textarea>
-				<!-- MIME -->
-				<input type="file" accept="image/*" id="fileInput">
+				
+				<textarea class="form-control mt-3" rows="5" id="contentInput">${post.content }</textarea>
+				
+				<c:if test="${not empty post.imagePath }">
+					<img src="${post.imagePath }">
+				</c:if>
 				
 				<div class="d-flex justify-content-between mt-3">
 					<a href="/post/list_view" class="btn btn-info"> 목록으로</a>
-					<button type="button" class="btn btn-success" id="saveBtn">저장</button>
+					<button type="button" class="btn btn-success" id="updateBtn">수정</button>
 				</div>
 			</div>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
-	<script>
-		$(document).ready(function(){
-			$("#saveBtn").on("click",function(){
-				var subject = $("#subjectInput").val().trim();
-				var content = $("#contentInput").val().trim();
-				
-				if(subject == null || subject ==""){
-					alert("제목을 입력하세요");
-					return;
-				}
-				if(content == null || content ==""){
-					alert("내용을 입력하세요");
-					return;
-				}
-				
-				var formData = new FormData();
-				formData.append("subject", subject);
-				formData.append("content", content);
-				formData.append("file", $("#fileInput")[0].files[0]);
-				
-				$.ajax({
-					enctype:"multipart/form-data", //파일 업로드 필수
-					type:"post",
-					url:"/post/create",
-					processData:false, //파일 업로드 필수
-					contentType:false, //파일 업로드 필수
-					data:formData,
-					success:function(data){
-						if(data.result == "success"){
-							alert("글쓰기 성공!");
-							location.href="/post/list_view"
-						}else{
-							alert("글 쓰기에 실패했습니다!");
-						}
-					},
-					error:function(e){
-						alert("error");
-					}
-				});
-			});
-		});
-	
-	</script>
 
 </body>
 </html>

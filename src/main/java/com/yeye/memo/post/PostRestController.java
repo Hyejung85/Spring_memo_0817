@@ -22,6 +22,7 @@ public class PostRestController {
 	@Autowired
 	private PostBO postBO;
 	
+	// 메모 작성
 	@RequestMapping("/create")
 	public Map<String, String> create(
 			@RequestParam("subject") String subject
@@ -46,4 +47,6 @@ public class PostRestController {
 		}
 		return result;
 	}
+	
+	
 }

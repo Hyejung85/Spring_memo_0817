@@ -25,5 +25,43 @@
  		
  		)
  	</insert>
+ 	
+ 	<!--  메모 목록 -->
+ 	<select id="selectMemoList" 
+ 	parameterType="int"
+ 	resultType="com.yeye.memo.post.model.Post">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`userId` = #{userId}
+ 		ORDER BY `id` DESC
+ 	</select>
+ 	
+ 	<!--  메모 상세 -->
+ 	<select id="selectMemo" 
+ 	parameterType="map"
+ 	resultType="com.yeye.memo.post.model.Post">
+ 		SELECT
+ 			`id`
+ 			, `userId`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `id` = #{id}
+ 	</select>
  
  </mapper>
