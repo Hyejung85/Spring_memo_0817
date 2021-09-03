@@ -32,13 +32,62 @@
 				</c:if>
 				
 				<div class="d-flex justify-content-between mt-3">
-					<a href="/post/list_view" class="btn btn-info"> 목록으로</a>
-					<button type="button" class="btn btn-success" id="updateBtn">수정</button>
+					<div class="d-flex">
+						<a href="/post/list_view" class="btn btn-info"> 목록으로</a>
+						<button type="button" class="btn btn-danger" id="deleteBtn" data-post-id="${post.id}">삭제</button>
+					</div>
+					<button type="button" class="btn btn-success" id="updateBtn" data-post-id="${post.id}">수정</button>
 				</div>
 			</div>
 		</section>
 		<c:import url="/WEB-INF/jsp/include/footer.jsp" />
 	</div>
+	
+	<script>
+	$(document).ready(function(){
+		$("#updateBtn").on("click", function(){
+			var postId = $(this).data("post-id");
+			
+			$.ajax({
+				type:"post",
+				url:"/post/update",
+				data:{"id":postId, "subject":$("#subjectInput").val(), "content":$("#contentInput").val()},
+				success:function(data){
+					if(data.result =="success"){
+						alert("수정 성공");
+						location.reload();
+					}else{
+						alert("수정 실패");
+					}
+				},
+				error:function(e){
+					alert("error");
+				}
+			});
+		});
+		
+		$("#deleteBtn").on("click",function(){
+			var postId = $(this).data("post-id");
+			
+			$.ajax({
+				type:"get",
+				url:"/post/delete",
+				data:{"id":postId},
+				success:function(data){
+					if(data.result == "success"){
+						location.href="/post/list_view";
+					}else{
+						alert("삭제 실패");
+					}
+				},
+				error:function(e){
+					alert("error");
+				}
+			});
+		});
+	});
+	
+	</script>
 
 </body>
 </html>

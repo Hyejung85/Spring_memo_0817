@@ -46,5 +46,13 @@ public class PostBO {
 		return postDAO.selectMemo(id, userId);
 		
 	}
-
+	// 메모 업데이트
+	public int updateMemo(int id, String subject, String content){
+		return postDAO.updatePost(id, subject, content);
+	}
+	
+	// 삭제
+	public int deleteMemo(int id, int userId) {
+		return postDAO.deletePost(id, userId);
+	}
 }

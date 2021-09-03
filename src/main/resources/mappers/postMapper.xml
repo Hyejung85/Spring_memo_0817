@@ -63,5 +63,19 @@
  			`userId` = #{userId}
  			AND `id` = #{id}
  	</select>
+ 	<update id="updatePost" parameterType="map">
+ 		UPDATE
+ 			`post`
+ 		SET 
+ 			`subject` = #{subject}
+ 			, `content` = #{content}
+ 		WHERE
+ 			`id` = #{id}
+ 	</update>
+ 	<delete id="deletePost" parameterType="int">
+ 		DELETE FROM `post`
+ 		WHERE `id` = #{id}
+ 			AND `userId` = #{userId}
+ 	</delete>
  
  </mapper>
