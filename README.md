@@ -18,11 +18,15 @@
    - view :  [/webapp/WEB-INF/jsp/user/*](https://github.com/Hyejung85/Spring_memo_0817/tree/develope/src/main/webapp/WEB-INF/jsp/post/)
  
 
-### 🎞데모🎞
- - 회원가입 및 로그인
- - 메모작성
- - 메모수정
- - 메모삭제
+### 👓데모👓
+  🎞 회원가입 및 로그인🎞
+   ![user_signup](https://user-images.githubusercontent.com/86756576/137442772-44f8daf5-fc9b-4d32-a0a2-63887766932c.gif)
+  🎞 메모작성🎞
+   ![post_insert](https://user-images.githubusercontent.com/86756576/137442992-c721b3ff-afe1-4052-a1d4-ed77f692ce76.gif) 
+  🎞 메모 리스트🎞
+   ![post_list](https://user-images.githubusercontent.com/86756576/137443022-ce8e7ea3-3307-4c2d-ae06-48e4d6b9ec46.gif)  
+  🎞 메모수정 및 삭제🎞
+   ![post_update](https://user-images.githubusercontent.com/86756576/137443542-10ca1e8a-e903-4006-a931-75b31e0bfc51.gif)
 
 ### 🔉외부 라이브러리 라이센스🔉
  - Tomcat [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0) 
