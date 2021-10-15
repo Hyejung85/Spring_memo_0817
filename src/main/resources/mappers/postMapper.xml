@@ -43,7 +43,90 @@
  		WHERE
  			`userId` = #{userId}
  		ORDER BY `id` DESC
+ 		LIMIT 3
  	</select>
+ 	
+ 	<select id="selectMemoListByNextId" parameterType="map" 
+ 	resultType="com.yeye.memo.post.model.Post">
+ 		SELECT 
+ 			`id`
+ 			, `userId`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+		WHERE
+			<![CDATA[
+				`userId` = #{userId}
+				AND `id` < #{nextId}
+			]]>
+			
+		ORDER BY `id` DESC
+		LIMIT 3
+ 	</select>
+ 	
+ 	<select id="selectMemoListByPrevId" parameterType="map" 
+ 	resultType="com.yeye.memo.post.model.Post">
+ 		SELECT 
+ 			`id`
+ 			, `userId`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+		WHERE
+			<![CDATA[
+				`userId` = #{userId}
+				AND `id` > #{prevId}
+			]]>
+			
+		ORDER BY `id` 
+		LIMIT 3
+ 	</select>
+ 	
+ 	<select id="lastPost" parameterType="int" 
+ 	resultType="com.yeye.memo.post.model.Post">
+ 		SELECT 
+ 			`id`
+ 			, `userId`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+			`userId` = #{userId}
+ 		ORDER BY `id`
+ 		LIMIT 1
+ 	</select>
+ 	
+ 	<select id="firstPost" parameterType="int" 
+ 	resultType="com.yeye.memo.post.model.Post">
+ 		SELECT 
+ 			`id`
+ 			, `userId`
+ 			, `subject`
+ 			, `content`
+ 			, `imagePath`
+ 			, `createdAt`
+ 			, `updatedAt`
+ 		FROM
+ 			`post`
+ 		WHERE
+			`userId` = #{userId}
+ 		ORDER BY `id` DESC
+ 		LIMIT 1
+ 	</select>
+ 	
+ 	
  	
  	<!--  메모 상세 -->
  	<select id="selectMemo" 

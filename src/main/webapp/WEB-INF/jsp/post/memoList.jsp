@@ -31,14 +31,26 @@
 					<tbody>
 						<c:forEach var="memo" items="${memoList }" varStatus="status">
 						<tr>
-							<td>${status.count }</td>
+							<td>${memo.id }</td>
 							<td><a href="/post/detail_view?id=${memo.id }">${memo.subject }</a></td>
 							<td><fmt:formatDate value="${memo.createdAt }" pattern="yyyy-MM-dd HH:mm:ss" /></td>
 						</tr>
 						</c:forEach>
 					</tbody>
-					
 				</table>
+				<div class="d-flex justify-content-between">
+					<div>
+						<c:if test="${prevId ne 0}">
+							<a href="/post/list_view?prevId=${prevId}"> &lt;이전</a>
+						</c:if>
+					</div>
+					
+					<div>
+						<c:if test="${nextId ne 0}">	
+							<a href="/post/list_view?nextId=${nextId}">다음></a>
+						</c:if>
+					</div>
+				</div>
 				<div class="text-right">
 					<a class="btn btn-info" href="/post/create_view">글쓰기</a>
 				</div>

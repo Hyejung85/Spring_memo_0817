@@ -1,5 +1,6 @@
 package com.yeye.memo.post.bo;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +37,27 @@ public class PostBO {
 	}
 	
 	// 메모 목록
-	public List<Post> getMemoList(int userId){
+	public List<Post> getMemoList(int userId, Integer nextId, Integer prevId){
+		// 다음 버튼
+		if(nextId != null){
+			return postDAO.selectMemoListByNextId(userId, nextId);
+		}else if(prevId != null) { // 이전 버튼
+			List<Post> postList = postDAO.selectMemoListByPrevId(userId, prevId);
+			Collections.reverse(postList);
+			return postList;
+		}
 		return postDAO.selectMemoList(userId);
 		
+	}
+	
+	// 마지막 페이지 확인
+	// nextId : 현재 가져온 리스트에서 가장 작은 id	
+	public boolean isLastPage(int userId, int nextId) {
+		return postDAO.lastPost(userId).getId() == nextId;
+	}
+	
+	public boolean isFirstPage(int userId, int prevId) {
+		return postDAO.firstPost(userId).getId() == prevId;
 	}
 	
 	// 메모 상세

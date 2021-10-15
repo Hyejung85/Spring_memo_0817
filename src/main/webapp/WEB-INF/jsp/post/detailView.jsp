@@ -28,7 +28,7 @@
 				<textarea class="form-control mt-3" rows="5" id="contentInput">${post.content }</textarea>
 				
 				<c:if test="${not empty post.imagePath }">
-					<img src="${post.imagePath }">
+					<img src="${post.imagePath }" class="mt-2 w-100">
 				</c:if>
 				
 				<div class="d-flex justify-content-between mt-3">
